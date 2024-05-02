@@ -1,4 +1,6 @@
-﻿namespace Shazam;
+﻿using System;
+
+namespace Shazam;
 
 public class CombinedBuffer
 {
