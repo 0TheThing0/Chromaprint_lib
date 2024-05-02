@@ -16,26 +16,33 @@ public class FFT
     // FFT input buffer
     short[] _input;
     
-    public FFT(int frame_size, int overlap, IFFTService service, IFFTFrameConsumer consumer)
+    /// <summary>
+    /// Create basic fft transformer
+    /// </summary>
+    /// <param name="frame_size">Size of frame to process</param>
+    /// <param name="overlap">Frame overlapping</param>
+    /// <param name="service">Service to process input</param>
+    /// <param name="consumer">Result consumer</param>
+    public FFT(int frameSize, int overlap, IFFTService service, IFFTFrameConsumer consumer)
     {
         _service = service;
-        _window = new double[frame_size];
-        _buffer = new short[frame_size];
+        _window = new double[frameSize];
+        _buffer = new short[frameSize];
         _buffer_offset = 0;
-        _frame = new double[frame_size];
-        _frame_size = frame_size;
-        _increment = frame_size - overlap;
+        _frame = new double[frameSize];
+        _frame_size = frameSize;
+        _increment = frameSize - overlap;
         _consumer = consumer;
         
-        Helper.PrepareHammingWindow(ref _window, 0, frame_size);
-        for (int i = 0; i < frame_size; i++)
+        Helper.PrepareHammingWindow(ref _window, 0, frameSize);
+        for (int i = 0; i < frameSize; i++)
         {
             _window[i] /= short.MaxValue;
         }
         
-        _service.Initialize(frame_size, _window);
+        _service.Initialize(frameSize, _window);
         
-        _input = new short[frame_size];
+        _input = new short[frameSize];
     }
     
     public void Reset()
@@ -43,8 +50,14 @@ public class FFT
         _buffer_offset = 0;
     }
 
+    /// <summary>
+    /// Process input data
+    /// </summary>
+    /// <param name="input">Int16 values</param>
+    /// <param name="length">Lenght of input</param>
     public void Consume(short[] input, int length)
     {
+        //Check if buffer is full
         if (_buffer_offset + length < _frame_size)
         {
             Array.Copy(input,0,_buffer,_buffer_offset,length);
@@ -60,6 +73,7 @@ public class FFT
             combined_buffer.Read(_input, 0, _frame_size);
             _service.ComputeFrame(_input,_frame);
             
+            //Sending processed data to consumer
             _consumer.Consume(_frame);
             combined_buffer.Shift(_increment);
         }

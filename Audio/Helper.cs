@@ -4,6 +4,12 @@ namespace Shazam;
 
 public interface Helper
 {
+    /// <summary>
+    /// Creating window to processing input signal
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <param name="first"></param>
+    /// <param name="last"></param>
     public static void PrepareHammingWindow(ref double[] vector, int first, int last)
     {
         int i = 0, max_i = last - first - 1;
@@ -15,6 +21,13 @@ public interface Helper
         }
     }
 
+    /// <summary>
+    /// Applying window to data
+    /// </summary>
+    /// <param name="in_output"></param>
+    /// <param name="window"></param>
+    /// <param name="size"></param>
+    /// <param name="scale"></param>
     public static void ApplyWindow(ref double[] in_output, double[] window, int size, double scale)
     {
         int i = 0;

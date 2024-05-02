@@ -3,6 +3,9 @@ using NAudio.Wave;
 
 namespace Shazam;
 
+/// <summary>
+/// Class for capturing sound from device and applying FFT
+/// </summary>
 public class FFTAudioCapture : AudioCapture
 {
     static public readonly int FRAME_SIZE = 4096;

@@ -2,6 +2,9 @@
 
 namespace Shazam;
 
+/// <summary>
+/// Buffer for combining two arrays
+/// </summary>
 public class CombinedBuffer
 {
     short[][] _buffer = new short[3][];
@@ -17,6 +20,13 @@ public class CombinedBuffer
     {
         get { return _size[0] + _size[1] - _offset; }
     }
+    /// <summary>
+    /// Create combined buffer
+    /// </summary>
+    /// <param name="buffer1">First buffer</param>
+    /// <param name="size1">First buffer size</param>
+    /// <param name="buffer2">Second buffer</param>
+    /// <param name="size2">Second buffer size</param>
     public CombinedBuffer(short[] buffer1, int size1, short[] buffer2, int size2)
     {
         _offset = 0;
