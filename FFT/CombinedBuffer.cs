@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FFT;
+namespace Chromaprint.FFT;
 
 /// <summary>
 /// Buffer for combining two arrays

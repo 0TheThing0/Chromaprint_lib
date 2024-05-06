@@ -1,8 +1,8 @@
 ﻿using System;
+using Chromaprint.FFT;
 using NAudio.Wave;
-using FFT;
 
-namespace Audio;
+namespace Chromaprint.Audio;
 
 /// <summary>
 /// Class for capturing sound from device and applying FFT

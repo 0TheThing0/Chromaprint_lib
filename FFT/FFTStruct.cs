@@ -1,6 +1,6 @@
 ﻿using System;
 using Chromaprint;
-namespace FFT;
+namespace Chromaprint.FFT;
 
 public class FFTStruct
 {
@@ -19,7 +19,7 @@ public class FFTStruct
     /// <summary>
     /// Create basic fft transformer
     /// </summary>
-    /// <param name="frame_size">Size of frame to process</param>
+    /// <param name="frameSize">Size of frame to process</param>
     /// <param name="overlap">Frame overlapping</param>
     /// <param name="service">Service to process input</param>
     /// <param name="consumer">Result consumer</param>

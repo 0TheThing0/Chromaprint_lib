@@ -1,4 +1,4 @@
-﻿namespace FFT;
+﻿namespace Chromaprint.FFT;
 
 /// <summary>
 /// Consumer of frames produced by FFT.

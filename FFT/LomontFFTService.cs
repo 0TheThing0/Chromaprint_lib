@@ -1,7 +1,7 @@
 ﻿using System;
 using Chromaprint;
 
-namespace FFT;
+namespace Chromaprint.FFT;
 
 public class LomontFFTService : IFFTService
 {

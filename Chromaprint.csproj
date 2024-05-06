@@ -10,8 +10,4 @@
       <PackageReference Include="NAudio" Version="2.2.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Chroma\" />
-    </ItemGroup>
-
 </Project>

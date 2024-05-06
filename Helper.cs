@@ -35,4 +35,39 @@ public interface Helper
             ++i;
         }
     }
+
+    /// <summary>
+    /// Converting frequency into equal index in FFT frame
+    /// </summary>
+    /// <param name="freq"></param>
+    /// <param name="frameSize"></param>
+    /// <param name="sampleRate"></param>
+    /// <returns></returns>
+    public static int FreqToIndex(double freq, int frameSize, int sampleRate)
+    {
+        return (int)Math.Round(frameSize * freq / sampleRate);
+    }
+    
+    /// <summary>
+    /// Convert FFT frame index into freq
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="frameSize"></param>
+    /// <param name="sampleRate"></param>
+    /// <returns></returns>
+    public static double IndexToFreq(int i, int frameSize, int sampleRate)
+    {
+        return (double)i * sampleRate / frameSize;
+    }
+    
+    /// <summary>
+    /// Convert freq to octave
+    /// </summary>
+    /// <param name="freq"></param>
+    /// <param name="baseNote"></param>
+    /// <returns></returns>
+    public static double FreqToOctave(double freq, double baseNote = 440.0 / 16.0 )
+    {
+        return Math.Log(freq / baseNote, 2.0);
+    }
 }

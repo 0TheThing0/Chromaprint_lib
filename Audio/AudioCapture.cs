@@ -2,7 +2,7 @@
 using System.IO;
 using NAudio.Wave;
 
-namespace Audio;
+namespace Chromaprint.Audio;
 
 /// <summary>
 /// Capture sound from input device

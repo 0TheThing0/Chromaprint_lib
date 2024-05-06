@@ -1,4 +1,4 @@
-﻿namespace FFT;
+﻿namespace Chromaprint.FFT;
 
 /// <summary>
 /// Interface for services computing the FFT.
