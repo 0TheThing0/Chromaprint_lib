@@ -1,7 +1,7 @@
 ﻿namespace Chromaprint.Chroma;
 
 /// <summary>
-/// Class for filtering the data acquired from Chroma
+/// Class for filtering the data acquired from <see cref="Chroma"/>
 /// </summary>
 public class ChromaFilter : IFeatureVectorConsumer
 {

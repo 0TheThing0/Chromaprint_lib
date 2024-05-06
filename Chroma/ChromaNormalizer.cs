@@ -2,8 +2,9 @@
 using Chromaprint.Utilities;
 
 /// <summary>
-/// Class for normalizing chroma data. Current implementation
-/// of this class is basically a one-line method, but with the
+/// Class for normalizing chroma data (supposedly provided
+/// by <see cref="ChromaFilter"/>. Current implementation of
+/// this class is basically a one-line method, but with the
 /// purpose of clear division of responsibilities and flexibility
 /// of the component, the decision has been made to leave it as
 /// a separate class, as it is in the original implementation 
