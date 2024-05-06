@@ -1,4 +1,4 @@
-﻿namespace Shazam;
+﻿namespace FFT;
 
 /// <summary>
 /// Consumer of frames produced by FFT.

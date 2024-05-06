@@ -2,7 +2,7 @@
 using System.IO;
 using NAudio.Wave;
 
-namespace Shazam;
+namespace Audio;
 
 /// <summary>
 /// Capture sound from input device

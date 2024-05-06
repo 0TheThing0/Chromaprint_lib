@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shazam;
+namespace FFT;
 
 /// <summary>
 /// Buffer for combining two arrays

@@ -1,6 +1,7 @@
 ﻿using System;
+using Chromaprint;
 
-namespace Shazam;
+namespace FFT;
 
 public class LomontFFTService : IFFTService
 {

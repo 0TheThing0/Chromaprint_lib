@@ -1,8 +1,8 @@
 ﻿using System;
+using Chromaprint;
+namespace FFT;
 
-namespace Shazam;
-
-public class FFT
+public class FFTStruct
 {
     private double[] _window;
     private int _frame_size;
@@ -23,7 +23,7 @@ public class FFT
     /// <param name="overlap">Frame overlapping</param>
     /// <param name="service">Service to process input</param>
     /// <param name="consumer">Result consumer</param>
-    public FFT(int frameSize, int overlap, IFFTService service, IFFTFrameConsumer consumer)
+    public FFTStruct(int frameSize, int overlap, IFFTService service, IFFTFrameConsumer consumer)
     {
         _service = service;
         _window = new double[frameSize];

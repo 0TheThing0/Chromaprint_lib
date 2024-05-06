@@ -1,4 +1,4 @@
-﻿namespace Shazam;
+﻿namespace FFT;
 
 /// <summary>
 /// Interface for services computing the FFT.

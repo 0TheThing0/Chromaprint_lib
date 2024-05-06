@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Shazam;
+﻿namespace Chromaprint;
 
 public interface Helper
 {
