@@ -2,6 +2,7 @@
 using Chromaprint;
 
 namespace Chromaprint.FFT;
+using Chromaprint.Utilities;
 
 public class LomontFFTService : IFFTService
 {

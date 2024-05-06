@@ -1,6 +1,7 @@
 ﻿using Chromaprint.FFT;
 
 namespace Chromaprint.Chroma;
+using Chromaprint.Utilities;
 
 /// <summary>
 /// Class for Chroma algorithm

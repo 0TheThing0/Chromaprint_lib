@@ -14,8 +14,8 @@ public class ChromaFilter : IFeatureVectorConsumer
     private int _buffer_offset;
     private int _buffer_size;
     
-    // Supposedly the next stage of fingerprinting
-    // must be ChromaNormalizer
+    // Supposedly, the next stage of fingerprinting 
+    // pipeline must be ChromaNormalizer
     private IFeatureVectorConsumer _consumer;
 
     public ChromaFilter(double[] coefficients, IFeatureVectorConsumer consumer)

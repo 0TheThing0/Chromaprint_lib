@@ -1,6 +1,7 @@
 ﻿using System;
 using Chromaprint;
 namespace Chromaprint.FFT;
+using Chromaprint.Utilities;
 
 public class FFTStruct
 {

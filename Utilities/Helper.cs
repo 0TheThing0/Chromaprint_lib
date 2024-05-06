@@ -1,4 +1,4 @@
-﻿namespace Chromaprint;
+﻿namespace Chromaprint.Utilities;
 
 public interface Helper
 {
@@ -69,5 +69,49 @@ public interface Helper
     public static double FreqToOctave(double freq, double baseNote = 440.0 / 16.0 )
     {
         return Math.Log(freq / baseNote, 2.0);
+    }
+
+
+    /// <summary>
+    /// Calculates the norm of a vector of an arbitrary length
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns></returns>
+    public static double EuclideanNorm(double[] vector)
+    {
+        double squares = 0;
+        double value;
+        
+        for (int i = 0; i < vector.Length; i++)
+        {
+            value = vector[i];
+            squares += value * value;
+        }
+
+        return (squares > 0) ? Math.Sqrt(squares) : 0;
+    }
+
+    /// <summary>
+    /// Normalize the vector of an arbitrary length
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <param name="norm"></param>
+    /// <param name="threshold">If the value of norm is less than the threshold, the vector becomes a null-vector</param>
+    public static void NormalizeVector(double[] vector, double norm, double threshold = 0.01)
+    {
+        if (norm < threshold)
+        {
+            for (int i = 0; i < vector.Length; i++)
+            {
+                vector[i] = 0.0;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < vector.Length; i++)
+            {
+                vector[i] /= norm;
+            }
+        }
     }
 }
