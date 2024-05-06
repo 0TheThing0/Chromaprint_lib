@@ -8,7 +8,7 @@ namespace Chromaprint.Chroma;
 /// </summary>
 public class Chroma : IFFTFrameConsumer
 {
-    private static readonly int NUM_BANDS = 12;
+    public static readonly int NUM_BANDS = 12;
     bool _interpolate;
     private int[] _notes;
     private double[] _notesFrac;
