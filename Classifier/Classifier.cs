@@ -14,7 +14,6 @@ public class Classifier
 
     // Property that will be used to retrieve 
     // max filter width in FingerprintCalculator
-    // TODO: come up with a more-or-less-normal-looking solution for this problem
     internal Filter Filter
     {
         get =>_filter;
