@@ -3,7 +3,7 @@
 /// <summary>
 /// Class that allows to implement easy and
 /// efficient access to area values of <see cref="Image"/>.
-/// IntegralImage is mostly useful in <see cref="Filter"/>
+/// IntegralImage is mostly useful in <see cref="Classifier.Filter"/>
 /// </summary>
 /// <remarks>
 /// http://en.wikipedia.org/wiki/Summed_area_table

@@ -1,6 +1,7 @@
-﻿using NAudio.MediaFoundation;
+﻿using Chromaprint.Image;
+using NAudio.MediaFoundation;
 
-namespace Chromaprint.Image;
+namespace Chromaprint.Classifier;
 
 /// <summary>
 /// Class for ApplyFuncing a filter to an image representation
