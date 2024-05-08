@@ -59,6 +59,8 @@ public class Image
     {
     }
 
+
+    #region Public methods
     /// <summary>
     /// Add row to the image instance. The row is appended to the end
     /// </summary>
@@ -98,5 +100,15 @@ public class Image
         return row;
     }
 
+    /// <summary>
+    /// Creates a copy of the existing image
+    /// </summary>
+    /// <returns>Shallow copy of the image instance</returns>
+    public Image Copy()
+    {
+        double[] copyData = (double[])_data.Clone();
+        return new Image(_columns, copyData);
+    }
 
+    #endregion
 }
