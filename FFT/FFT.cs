@@ -1,9 +1,11 @@
 ﻿using System;
 using Chromaprint;
+using Chromaprint.Audio;
+
 namespace Chromaprint.FFT;
 using Chromaprint.Utilities;
 
-public class FFTStruct
+public class FFT : IAudioConsumer
 {
     private double[] _window;
     private int _frame_size;
@@ -24,7 +26,7 @@ public class FFTStruct
     /// <param name="overlap">Frame overlapping</param>
     /// <param name="service">Service to process input</param>
     /// <param name="consumer">Result consumer</param>
-    public FFTStruct(int frameSize, int overlap, IFFTService service, IFFTFrameConsumer consumer)
+    public FFT(int frameSize, int overlap, IFFTService service, IFFTFrameConsumer consumer)
     {
         _service = service;
         _window = new double[frameSize];
