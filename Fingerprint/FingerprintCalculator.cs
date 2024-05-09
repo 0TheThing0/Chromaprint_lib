@@ -4,7 +4,7 @@ using Chromaprint.Image;
 
 /// <summary>
 /// Class that allows to convert results of
-/// <see cref="Fingerprinter"/> into an array
+/// <see cref="FileFingerprinter"/> into an array
 /// of data of type int
 /// </summary>
 public class FingerprintCalculator

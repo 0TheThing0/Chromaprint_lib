@@ -74,6 +74,10 @@ public class Chroma : IFFTFrameConsumer
         }
     }
 
+    public void Reset()
+    {
+    }
+
     public void Consume(double[] frame)
     {
         //We must recreate array each time to use it correctly in ChromaFilter
