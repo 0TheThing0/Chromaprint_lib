@@ -2,6 +2,12 @@
 
 namespace Chromaprint.SilenceRemover;
 
+/// <summary>
+/// Class that allows to prevent silent (meaning,
+/// values that are less or equal than a certain
+/// threshold, in average) from being passed to
+/// its consumer 
+/// </summary>
 public class SilenceRemover : IAudioConsumer
 {
     // basically 5ms, if the sample rate is 11025
