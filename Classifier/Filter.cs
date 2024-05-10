@@ -105,7 +105,7 @@ public class Filter
         set => _width = value;
     }
 
-    public Filter(int cmpType = 1, int filterType = 0, int y = 0, int height = 0, int width = 0)
+    public Filter(int y = 0, int height = 0, int width = 0, int filterType = 0, int cmpType = 1)
     {
         CompareType = cmpType;
         FilterType = filterType;

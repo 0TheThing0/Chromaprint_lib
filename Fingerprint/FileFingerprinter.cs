@@ -22,6 +22,11 @@ public class FileFingerprinter : IAudioConsumer
     public static readonly int MIN_FREQ = 28;
     public static readonly int MAX_FREQ = 3520;
     
+    // fields for FileReader instance
+    public static readonly int BUFFER_SIZE = 4096;
+    public static readonly int BIT_DEPTH = 16;
+    public static readonly int NUM_CHANNELS = 1;
+    
     private Image _image;
     private ImageBuilder _imageBuilder;
     private Chroma _chroma;
