@@ -72,6 +72,17 @@ public class Chroma : IFFTFrameConsumer
             _notesFrac[i] = note - _notes[i];
             freq += step;
         }
+        
+        /*_minIndex = Math.Max(1, Helper.FreqToIndex(minFreq, frameSize, sampleRate));
+        _maxIndex = Math.Min(frameSize / 2, Helper.FreqToIndex(maxFreq, frameSize, sampleRate));
+        for (int i = _minIndex; i < _maxIndex; i++)
+        {
+            double freq = Helper.IndexToFreq(i, frameSize, sampleRate);
+            double octave = Helper.FreqToOctave(freq);
+            double note = NUM_BANDS * (octave - Math.Floor(octave));
+            _notes[i] = (byte)note;
+            _notesFrac[i] = note - _notes[i];
+        }*/
     }
 
     public void Reset()
@@ -97,9 +108,9 @@ public class Chroma : IFFTFrameConsumer
                 {
                     //We need to take prev note
                     nearNote = (note + NUM_BANDS - 1) % NUM_BANDS;
-                    k = 0.5 * _notesFrac[i];
+                    k = 0.5 + _notesFrac[i];
                 } 
-                else if (_notesFrac[i] > 0.5)
+                if (_notesFrac[i] > 0.5)
                 {
                     //We need to take next note
                     nearNote = (note + 1) % NUM_BANDS;
