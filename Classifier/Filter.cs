@@ -263,7 +263,7 @@ public class Filter
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <returns></returns>
-    private static double Subtract(double a, double b)
+    public static double Subtract(double a, double b)
     {
         return a - b;
     }
@@ -276,7 +276,7 @@ public class Filter
     /// <param name="b"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
-    private static double SubtractLog(double a, double b)
+    public static double SubtractLog(double a, double b)
     {
         double r = Math.Log((1.0 + a) / (1.0 + b));
         

@@ -11,7 +11,7 @@ public class CombinedBuffer
     int[] _size = new int[3];
     int _offset;
 
-    public int Offset { get; }
+    public int Offset { get => _offset; }
     
     /// <summary>
     /// Gets the size of the combined buffer.
