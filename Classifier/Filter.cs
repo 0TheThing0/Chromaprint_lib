@@ -148,7 +148,7 @@ public class Filter
     /// </summary>
     public static double Filter0(IntegralImage image, int x, int y, int w, int h, NumComparer cmp)
     {
-        double a = image.Area(x, y, w - 1, y + h - 1);
+        double a = image.Area(x, y, x + w - 1, y + h - 1);
         double b = 0;
         return cmp(a, b);
     }
