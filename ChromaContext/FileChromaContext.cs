@@ -107,6 +107,6 @@ public class FileChromaContext : IFileChromaContext
 
     public int GetFingerprintHash()
     {
-        throw new NotImplementedException();
+        return SimHash.Compute(_fingerprint);
     }
 }
