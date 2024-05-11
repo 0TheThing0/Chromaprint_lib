@@ -60,7 +60,11 @@ public class AudioReader
         _waveFormat = new WaveFormat(sampleRate, bitsDepth, channels);
     }
 
-    
+    /// <summary>
+    ///     Resets the audio converter of audio reader instance,
+    ///     unsetting the wave format, reset indicator and
+    ///     IWaveProvider stream
+    /// </summary>
     public void Reset()
     {
         _stream = null;

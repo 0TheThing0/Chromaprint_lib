@@ -73,7 +73,6 @@ public class FileChromaContext : IFileChromaContext
     public bool ComputeFingerprint(string filePath)
     {
         _fingerprinter.Start();
-        _audioReader.Reset();
 
         // TODO: check SetFile status here
         _audioReader.SetFile(filePath);
