@@ -3,7 +3,6 @@ using Chromaprint.Utilities;
 namespace Chromaprint.Compression;
 
 using static CompressionBitData;
-// TODO: test
 
 /// <summary>
 /// Class for decompressing the fingerprint

@@ -73,6 +73,9 @@ public class BitStringReader
             else
             {
                 _eof = true;
+                
+                // setting to read as much bits as possible
+                bits = _bufferSize;
             }
         }
 
