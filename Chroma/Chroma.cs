@@ -56,7 +56,7 @@ public class Chroma : IFFTFrameConsumer
     private void PrepareNotes(int minFreq, int maxFreq, int frameSize, int sampleRate)
     {
         //Counting minIndex and maxIndex for set scope for frame processing
-        _minIndex = Math.Min(1, Helper.FreqToIndex(minFreq, frameSize, sampleRate));
+        _minIndex = Math.Max(1, Helper.FreqToIndex(minFreq, frameSize, sampleRate));
         _maxIndex = Math.Min(frameSize / 2, Helper.FreqToIndex(maxFreq, frameSize, sampleRate));
 
         //Each frequency in FFT frame is (i * sampleRate) / frameSize; 
