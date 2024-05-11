@@ -16,7 +16,7 @@ public class Image
     public double[] Data => _data;
 
     public double this[int i, int j]
-    {
+    {   
         get => _data[i * _columns + j];
         set => _data[i * _columns + j] = value;
     }

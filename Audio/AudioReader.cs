@@ -96,7 +96,7 @@ public class AudioReader
         do
         {
             readedBytes = _stream.Read(_bytes, 0, _bufferSize);
-            Buffer.BlockCopy(_bytes, 0, _data, 0, _bytes.Length);
+            Buffer.BlockCopy(_bytes, 0, _data, 0, readedBytes);
             _consumer.Consume(_data,readedBytes/2);
         } while (readedBytes == _bufferSize);
     }
