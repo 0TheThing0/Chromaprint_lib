@@ -1,41 +1,30 @@
 using Chromaprint.Audio;
+using Chromaprint.Fingerprint;
 
 namespace Chromaprint;
 
 /// <summary>
-///     Basic Chromaprint API interface
+///     Basic Chromaprint API interface for data streams
 /// </summary>
 public interface IChromaContext : IAudioConsumer
 {
-    // TODO: decide if the version is crucial in our project
     /// <summary>
-    /// Return the version number of Chromaprint.
+    ///     Return the version number of Chromaprint.
     /// </summary>
-    //public string Version { get; }
-
-    // TODO: decide if the hashing must be included in our project
-    // (probably might be useful for a server: if 2 hashes are the same, 
-    // why not output the track)
-    /// <summary>
-    /// Return 32-bit hash of the calculated fingerprint.
-    /// </summary>
-    /// <returns>The hash.</returns>
-    //public int GetFingerprintHash();
+    public string Version { get; }
 
     /// <summary>
     ///     Gets the fingerprint algorithm the context is configured to use.
     /// </summary>
-    public int Algorithm { get; }
+    public FingerprintAlgorithm Algorithm { get; }
 
-    // TODO: discuss Start method and its implementation. Do we have a dest. sample rate and channels?
-    // or do we precompute them?
     /// <summary>
-    /// Restart the computation of a fingerprint with a new audio stream.
+    ///     Restart the computation of a fingerprint with a new audio file.
     /// </summary>
-    /// <param name="sampleRate">Sample rate of the audio stream (in Hz)</param>
-    /// <param name="numChannels">Numbers of channels in the audio stream (1 or 2)</param>
+    /// <param name="sampleRate">sample rate of the audio stream (in Hz)</param>
+    /// <param name="numChannels">numbers of channels in the audio stream (1 or 2)</param>
     /// <returns>False on error, true on success</returns>
-    //public bool Start(int sampleRate, int numChannels);
+    bool Start(int sampleRate, int numChannels);
 
     /// <summary>
     ///     Send audio data to the fingerprint calculator.
@@ -60,4 +49,10 @@ public interface IChromaContext : IAudioConsumer
     /// </summary>
     /// <returns>The raw fingerprint (array of 32-bit integers)</returns>
     public int[] GetRawFingerprint();
+
+    /// <summary>
+    ///     Return 32-bit hash of the calculated fingerprint.
+    /// </summary>
+    /// <returns>The hash.</returns>
+    public int GetFingerprintHash();
 }

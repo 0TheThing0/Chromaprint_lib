@@ -67,7 +67,10 @@ public class AudioReader
         _resample = false;
         _waveFormat = null;
     }
-    
+
+
+    // TODO: make it return a bool value: result of trying to 
+    // open a file?
     
     /// <summary>
     /// Binding audio file to AudioReader
