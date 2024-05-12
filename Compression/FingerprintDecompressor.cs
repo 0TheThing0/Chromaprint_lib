@@ -66,6 +66,7 @@ public class FingerprintDecompressor
         return _result;
     }
 
+    #region Decompressors
     /// <summary>
     /// Computes the resulting values of the fingerprint
     /// using bits read from the compressed data. Basically
@@ -150,5 +151,5 @@ public class FingerprintDecompressor
         return true;
     }
 
-
+    #endregion
 }

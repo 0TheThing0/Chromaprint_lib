@@ -51,6 +51,7 @@ public class FingerprintCompressor
         return ChromaBase64.ByteEncoding.GetString(_result.ToArray());
     }
 
+    #region Compressed data writers
     /// <summary>
     /// Method used to retrieve data for the first step of
     /// the compression algorithm - xor sequence of the numbers.
@@ -113,5 +114,5 @@ public class FingerprintCompressor
         _result.AddRange(writer.Bytes);
     }
 
-
+    #endregion
 }

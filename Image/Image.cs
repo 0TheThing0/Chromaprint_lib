@@ -58,9 +58,7 @@ public class Image
         : this(columns, 0)
     {
     }
-
-
-    #region Public methods
+    
     /// <summary>
     /// Add row to the image instance. The row is appended to the end
     /// </summary>
@@ -109,6 +107,4 @@ public class Image
         double[] copyData = (double[])_data.Clone();
         return new Image(_columns, copyData);
     }
-
-    #endregion
 }
