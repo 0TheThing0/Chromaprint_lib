@@ -68,13 +68,13 @@ public class FingerprinterConfiguration
         switch (algorithm)
         {
             case FingerprintAlgorithm.FP1:
-                break;
+                return new FingerprinterConfiguration1();
             case FingerprintAlgorithm.FP2:
-                break;
+                return new FingerprinterConfiguration2();
             case FingerprintAlgorithm.FP3:
-                break;
+                return new FingerprinterConfiguration3();
             case FingerprintAlgorithm.FP4:
-                break;
+                return new FingerprinterConfiguration4();
         }
 
         return config;
