@@ -105,7 +105,7 @@ public class RawFingerprinter : IAudioConsumer
     }
 
     /// <summary>
-    ///     Calculate the fingerprint based on the provided data
+    /// Calculate the fingerprint based on the provided data
     /// </summary>
     /// <returns>Array of 32-bit data that can be easily displayed as an image</returns>
     public int[] Finish()

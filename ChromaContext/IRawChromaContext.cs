@@ -1,13 +1,12 @@
-using Chromaprint.Compression;
+using Chromaprint.Audio;
 using Chromaprint.Fingerprint;
-using Chromaprint.Utilities;
 
 namespace Chromaprint;
 
 /// <summary>
-/// Basic Chromaprint API interface for audio files
+/// Basic Chromaprint API interface for data streams
 /// </summary>
-public interface IFileChromaContext
+public interface IRawChromaContext : IAudioConsumer
 {
     /// <summary>
     /// Return the version number of Chromaprint.
@@ -18,13 +17,27 @@ public interface IFileChromaContext
     /// Gets the fingerprint algorithm the context is configured to use.
     /// </summary>
     public FingerprintAlgorithm Algorithm { get; }
-    
+
     /// <summary>
-    /// Compute the fingerprint from an audio file.
+    /// Restart the computation of a fingerprint with a new audio file.
     /// </summary>
+    /// <param name="sampleRate">sample rate of the audio stream (in Hz)</param>
+    /// <param name="numChannels">numbers of channels in the audio stream (1 or 2)</param>
     /// <returns>False on error, true on success</returns>
-    public bool ComputeFingerprint(string filePath);
-    
+    bool Start(int sampleRate, int numChannels);
+
+    /// <summary>
+    /// Send audio data to the fingerprint calculator.
+    /// </summary>
+    /// <param name="data">Raw audio data (16-bit signed PCM)</param>
+    /// <param name="size">Size of the data buffer (in samples)</param>
+    public void Feed(short[] data, int size);
+
+    /// <summary>
+    /// Process any remaining buffered audio data and calculate the fingerprint.
+    /// </summary>
+    public void Finish();
+
     /// <summary>
     /// Return the calculated fingerprint as a compressed string.
     /// </summary>
@@ -44,7 +57,7 @@ public interface IFileChromaContext
     public int GetFingerprintHash();
 
     /// <summary>
-    /// Compress a raw fingerprint and optionally apply base64 encoding
+    ///     Compress a raw fingerprint and optionally apply base64 encoding
     /// </summary>
     /// <param name="fingerprint"></param>
     /// <param name="algorithm"></param>
@@ -52,16 +65,11 @@ public interface IFileChromaContext
     /// <returns></returns>
     public static byte[] EncodeFingerprint(int[] fingerprint, int algorithm, bool base64)
     {
-        var compressor = new FingerprintCompressor();
-        var compressed = compressor.Compress(fingerprint);
-
-        if (base64) compressed = ChromaBase64.Encode(compressed);
-
-        return ChromaBase64.ByteEncoding.GetBytes(compressed);
+        return IFileChromaContext.EncodeFingerprint(fingerprint, algorithm, base64);
     }
 
     /// <summary>
-    /// Decompress and optionally decode base64-encoded fingerprint
+    ///     Decompress and optionally decode base64-encoded fingerprint
     /// </summary>
     /// <param name="encodedFingerprint"></param>
     /// <param name="base64"></param>
@@ -69,15 +77,6 @@ public interface IFileChromaContext
     /// <returns></returns>
     public static int[] DecodeFingerprint(byte[] encodedFingerprint, bool base64, out int algorithm)
     {
-        var encoded = ChromaBase64.ByteEncoding.GetString(encodedFingerprint);
-        var compressed = base64 ? ChromaBase64.Decode(encoded) : encoded;
-
-        var decompressor = new FingerprintDecompressor();
-        var decompressedData = decompressor.Decompress(compressed, out algorithm);
-
-        var size = decompressedData.Length;
-        var fingerprint = new int[size];
-        Array.Copy(decompressedData, 0, fingerprint, 0, size);
-        return fingerprint;
+        return IFileChromaContext.DecodeFingerprint(encodedFingerprint, base64, out algorithm);
     }
 }
