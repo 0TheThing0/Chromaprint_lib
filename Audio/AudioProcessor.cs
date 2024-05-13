@@ -107,8 +107,6 @@ public class AudioProcessor : IAudioConsumer
                     return;
             }
         }
-
-        throw new NotImplementedException();
     }
 
     public void Flush()
