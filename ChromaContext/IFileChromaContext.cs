@@ -53,10 +53,10 @@ public interface IFileChromaContext
     public static byte[] EncodeFingerprint(int[] fingerprint, int algorithm, bool base64)
     {
         var compressor = new FingerprintCompressor();
-        var compressed = compressor.Compress(fingerprint);
-
+        var compressed = compressor.Compress(fingerprint, algorithm);
+    
         if (base64) compressed = ChromaBase64.Encode(compressed);
-
+    
         return ChromaBase64.ByteEncoding.GetBytes(compressed);
     }
 
