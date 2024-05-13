@@ -1,6 +1,6 @@
-﻿namespace Chromaprint.Fingerprint;
-using Chromaprint.Classifier;
-using Chromaprint.Image;
+﻿using Chromaprint.Image;
+
+namespace Chromaprint.Fingerprint;
 
 /// <summary>
 /// Class that allows to convert results of
@@ -16,11 +16,11 @@ public class FingerprintCalculator
     /// <remarks>https://en.wikipedia.org/wiki/Gray_code</remarks>
     public static uint[] GrayCode = { 0, 1, 3, 2 };
 
-    private Classifier[] _classifiers;
+    private Classifier.Classifier[] _classifiers;
     private int _numClassifiers;
     private int _maxFilterWidth;
 
-    public FingerprintCalculator(Classifier[] classifiers)
+    public FingerprintCalculator(Classifier.Classifier[] classifiers)
     {
         _classifiers = classifiers;
         _numClassifiers = classifiers.Length;
@@ -47,7 +47,7 @@ public class FingerprintCalculator
     /// is less than the maximum width
     /// of the filters of the calculator,
     /// the array is empty</returns>
-    public int[] Calculate(Image image)
+    public int[] Calculate(Image.Image image)
     {
         // estimating the amount of classifications needed
         // (-maxFilterWidth, as it must move as a window, 
@@ -76,7 +76,7 @@ public class FingerprintCalculator
     /// <param name="image"></param>
     /// <param name="offset"></param>
     /// <returns></returns>
-    public int CalculateSubfingerprint(IntegralImage image, int offset)
+    private int CalculateSubfingerprint(IntegralImage image, int offset)
     {
         uint bits = 0;
         for (int i = 0; i < _numClassifiers; i++)

@@ -1,11 +1,10 @@
 ﻿
-namespace Chromaprint.Fingerprint;
-
-using Chromaprint.Image;
+using Chromaprint.Audio;
 using Chromaprint.Chroma;
 using Chromaprint.FFT;
-using Chromaprint.Audio;
-using Chromaprint.SilenceRemover;
+using Chromaprint.Image;
+
+namespace Chromaprint.Fingerprint;
 
 /// <summary>
 /// Class that encapsulates all the logic of
@@ -27,20 +26,20 @@ public class FileFingerprinter : IAudioConsumer
     public static readonly int BIT_DEPTH = 16;
     public static readonly int NUM_CHANNELS = 1;
     
-    private Image _image;
+    private Image.Image _image;
     private ImageBuilder _imageBuilder;
-    private Chroma _chroma;
+    private Chroma.Chroma _chroma;
     private ChromaNormalizer _chromaNormalizer;
     private ChromaFilter _chromaFilter;
-    private FFT _fft;
+    private FFT.FFT _fft;
     private FingerprintCalculator _fingerprintCalculator;
     private FingerprinterConfiguration _fingerprinterConfiguration;
-    private SilenceRemover _silenceRemover;
+    private SilenceRemover.SilenceRemover _silenceRemover;
     private IAudioConsumer _consumer;
     
     public FileFingerprinter(FingerprinterConfiguration config, IFFTService fftService)
     {
-        _image = new Image(12);
+        _image = new Image.Image(12);
         if (config == null)
         {
             config = new FingerprinterConfiguration1();
@@ -49,11 +48,11 @@ public class FileFingerprinter : IAudioConsumer
         _imageBuilder = new ImageBuilder(_image);
         _chromaNormalizer = new ChromaNormalizer(_imageBuilder);
         _chromaFilter = new ChromaFilter(config.FilterCoefficients, _chromaNormalizer);
-        _chroma = new Chroma(MIN_FREQ, MAX_FREQ, FRAME_SIZE, SAMPLE_RATE, _chromaFilter);
-        _fft = new FFT(FRAME_SIZE, OVERLAP, fftService, _chroma);
+        _chroma = new Chroma.Chroma(MIN_FREQ, MAX_FREQ, FRAME_SIZE, SAMPLE_RATE, _chromaFilter);
+        _fft = new FFT.FFT(FRAME_SIZE, OVERLAP, fftService, _chroma);
         if (config.RemoveSilence)
         {
-            _silenceRemover = new SilenceRemover(_fft);
+            _silenceRemover = new SilenceRemover.SilenceRemover(_fft);
             _silenceRemover.Threshold = config.SilenceThreshold;
             _consumer = _silenceRemover;
         }
@@ -108,7 +107,7 @@ public class FileFingerprinter : IAudioConsumer
         _chroma.Reset();
         _chromaFilter.Reset();
         _chromaNormalizer.Reset();
-        _image = new Image(12);
+        _image = new Image.Image(12);
         _imageBuilder.Reset(_image);
         
         return true;
@@ -124,7 +123,7 @@ public class FileFingerprinter : IAudioConsumer
     {
         if (length < 0)
         {
-            throw new ArgumentException("Length must be a positive integer");
+            throw new ArgumentException("Length must be positive");
         }
 
         _consumer.Consume(input, length);
