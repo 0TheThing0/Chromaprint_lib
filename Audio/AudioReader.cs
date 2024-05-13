@@ -8,7 +8,6 @@ namespace Chromaprint.Audio;
 public class AudioReader
 {
     private string _filePath;
-    private IWaveProvider _stream;
     private bool _resample;
     private WaveFormat _waveFormat;
     private int _bufferSize;
@@ -67,15 +66,11 @@ public class AudioReader
     /// </summary>
     public void Reset()
     {
-        _stream = null;
         _resample = false;
         _waveFormat = null;
     }
 
 
-    // TODO: make it return a bool value: result of trying to 
-    // open a file?
-    
     /// <summary>
     /// Binding audio file to AudioReader
     /// </summary>
@@ -101,37 +96,36 @@ public class AudioReader
     public bool ReadAll()
     {
         var status = true;
-
+        WaveStream fileReader = null;
+        IWaveProvider stream = null;
+        
         try
         {
-            WaveStream fileStream = new AudioFileReader(_filePath);
+            fileReader = new AudioFileReader(_filePath);
+            
             if (_resample)
-                _stream = new MediaFoundationResampler(fileStream, _waveFormat);
+                stream = new MediaFoundationResampler(fileReader, _waveFormat);
             else
-                _stream = fileStream;
+                stream = fileReader;
         }
         catch (Exception ex)
         {
             status = false;
         }
 
-        if (status)
+        if (status && stream != null)
         {
             var readedBytes = 0;
             do
             {
-                readedBytes = _stream.Read(_bytes, 0, _bufferSize);
+                readedBytes = stream.Read(_bytes, 0, _bufferSize);
                 Buffer.BlockCopy(_bytes, 0, _data, 0, readedBytes);
                 _consumer.Consume(_data, readedBytes / 2);
             } while (readedBytes == _bufferSize);
         }
-        // TODO: implementation lacks Dispose() or Close(). Both 
-        // MediaFoundationResampler and AudioFileReader have these methods,
-        // as they implement IDisposable, but _stream is IWaveProvider, therefore
-        // doesn't implement IDisposable.
-        // now the stream will remain open, it's an issue
 
-
+        fileReader?.Dispose();
+        
         return status;
     }
 }
