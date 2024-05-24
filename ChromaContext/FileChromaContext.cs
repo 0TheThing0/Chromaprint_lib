@@ -72,14 +72,19 @@ public class FileChromaContext : IFileChromaContext
     /// <returns>False on error, true on success</returns>
     public bool ComputeFingerprint(string filePath)
     {
+        bool resultStatus;
         _fingerprinter.Start();
+        
+        resultStatus = _audioReader.SetFile(filePath);
 
-        // TODO: check SetFile status here
-        _audioReader.SetFile(filePath);
-        _audioReader.ReadAll();
+        if (resultStatus)
+            resultStatus = _audioReader.ReadAll();
+        else
+            return resultStatus;
+        
         _fingerprint = _fingerprinter.Finish();
 
-        return true;
+        return resultStatus;
     }
 
     /// <summary>

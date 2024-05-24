@@ -101,7 +101,7 @@ public class AudioReader
         
         try
         {
-            fileReader = new AudioFileReader(_filePath);
+            fileReader = new MediaFoundationReader(_filePath);
             
             if (_resample)
                 stream = new MediaFoundationResampler(fileReader, _waveFormat);
