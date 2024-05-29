@@ -54,7 +54,7 @@ public interface IRawChromaContext : IAudioConsumer
     /// Return 32-bit hash of the calculated fingerprint.
     /// </summary>
     /// <returns>The hash.</returns>
-    public int GetFingerprintHash();
+    public uint GetFingerprintHash();
 
     /// <summary>
     ///     Returns the amount of fingerprint data (int32 values)

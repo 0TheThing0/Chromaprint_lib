@@ -52,7 +52,7 @@ public interface IFileChromaContext
     /// Return 32-bit hash of the calculated fingerprint.
     /// </summary>
     /// <returns>The hash.</returns>
-    public int GetFingerprintHash();
+    public uint GetFingerprintHash();
     
     /// <summary>
     /// Compress a raw fingerprint and optionally apply base64 encoding

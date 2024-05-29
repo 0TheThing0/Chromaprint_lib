@@ -11,7 +11,7 @@ public static class SimHash
     /// </summary>
     /// <param name="data">Data to be hashed</param>
     /// <returns>32-bit SimHash</returns>
-    public static int Compute(int[] data)
+    public static uint Compute(int[] data)
     {
         return Compute(data, 0, data.Length);
     }
@@ -23,7 +23,7 @@ public static class SimHash
     /// <param name="start"></param>
     /// <param name="end"></param>
     /// <returns>32-bit SimHash</returns>
-    public static int Compute(int[] data, int start, int end)
+    public static uint Compute(int[] data, int start, int end)
     {
         var v = new int[32];
 
@@ -45,6 +45,6 @@ public static class SimHash
             if (v[i] > 0)
                 hash |= (uint)(1 << i);
 
-        return (int)hash;
+        return hash;
     }
 }

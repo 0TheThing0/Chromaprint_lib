@@ -124,7 +124,7 @@ public class FileChromaContext : IFileChromaContext
     ///     number between 0 and 32. Anthing above 15 means the hashes are
     ///     completely different.
     /// </remarks>
-    public int GetFingerprintHash()
+    public uint GetFingerprintHash()
     {
         return SimHash.Compute(_fingerprint);
     }
