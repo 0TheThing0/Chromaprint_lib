@@ -141,9 +141,11 @@ public class AudioReader
                 readedBytes = stream.Read(_bytes, 0, _bufferSize);
                 Buffer.BlockCopy(_bytes, 0, _data, 0, readedBytes);
                 _fingerprinter.Consume(_data, readedBytes / 2);
-            } while (readedBytes == _bufferSize && desiredFPSize?.CompareTo(_fingerprinter.GetReadyFPSize()) > 0);
+            } while (readedBytes == _bufferSize &&
+                     (desiredFPSize == null || desiredFPSize?.CompareTo(_fingerprinter.GetReadyFPSize()) > 0));
         }
 
+        
         fileReader?.Dispose();
         
         return status;
