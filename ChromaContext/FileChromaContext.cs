@@ -70,7 +70,7 @@ public class FileChromaContext : IFileChromaContext
     /// Compute the fingerprint from an audio file.
     /// </summary>
     /// <returns>False on error, true on success</returns>
-    public bool ComputeFingerprint(string filePath)
+    public bool ComputeFingerprint(string filePath, int? desiredFPSize = null)
     {
         bool resultStatus;
         _fingerprinter.Start();
@@ -78,7 +78,7 @@ public class FileChromaContext : IFileChromaContext
         resultStatus = _audioReader.SetFile(filePath);
 
         if (resultStatus)
-            resultStatus = _audioReader.ReadAll();
+            resultStatus = _audioReader.ReadFile(desiredFPSize);
         else
             return resultStatus;
         

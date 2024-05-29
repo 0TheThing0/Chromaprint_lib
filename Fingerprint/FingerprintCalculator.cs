@@ -38,6 +38,16 @@ public class FingerprintCalculator
     }
 
     /// <summary>
+    ///     Returns the amount of fingerprint data (int32 values)
+    ///     based on the current image state
+    /// </summary>
+    /// <returns></returns>
+    public int GetReadyFPSize(Image.Image image)
+    {
+        return image.Rows - _maxFilterWidth + 1;
+    }
+
+    /// <summary>
     /// Calculates the fingerprint and returns it as an array
     /// of gray-code-encoded array 
     /// </summary>
@@ -52,7 +62,8 @@ public class FingerprintCalculator
         // estimating the amount of classifications needed
         // (-maxFilterWidth, as it must move as a window, 
         // and window must be applied to existing data...)
-        int length = image.Rows - _maxFilterWidth + 1;
+        // int length = image.Rows - _maxFilterWidth + 1;
+        var length = GetReadyFPSize(image);
         if (length <= 0)
         {
             return Array.Empty<int>();

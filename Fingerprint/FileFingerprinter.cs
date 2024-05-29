@@ -1,5 +1,4 @@
-﻿
-using Chromaprint.Audio;
+﻿using Chromaprint.Audio;
 using Chromaprint.Chroma;
 using Chromaprint.FFT;
 using Chromaprint.Image;
@@ -111,6 +110,16 @@ public class FileFingerprinter : IAudioConsumer
         _imageBuilder.Reset(_image);
         
         return true;
+    }
+
+    /// <summary>
+    ///     Returns the amount of fingerprint data (int32 values)
+    ///     based on the current image state
+    /// </summary>
+    /// <returns></returns>
+    public int GetReadyFPSize()
+    {
+        return _fingerprintCalculator.GetReadyFPSize(_image);
     }
 
     /// <summary>

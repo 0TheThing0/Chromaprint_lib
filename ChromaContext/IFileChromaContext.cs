@@ -22,8 +22,19 @@ public interface IFileChromaContext
     /// <summary>
     /// Compute the fingerprint from an audio file.
     /// </summary>
-    /// <returns>False on error, true on success</returns>
-    public bool ComputeFingerprint(string filePath);
+    /// <param name="filePath">
+    /// Path to file to be fingerprinted
+    /// </param>
+    /// <param name="desiredFPSize">
+    /// Size of the fingerprint, number of 32-bit
+    /// instances in resulting fingerprint array
+    /// (null if the size must be as large as the
+    /// track is)
+    /// </param>
+    /// <returns>
+    /// False on error, true on success
+    /// </returns>
+    public bool ComputeFingerprint(string filePath, int? desiredFPSize = null);
     
     /// <summary>
     /// Return the calculated fingerprint as a compressed string.
@@ -42,7 +53,7 @@ public interface IFileChromaContext
     /// </summary>
     /// <returns>The hash.</returns>
     public int GetFingerprintHash();
-
+    
     /// <summary>
     /// Compress a raw fingerprint and optionally apply base64 encoding
     /// </summary>
