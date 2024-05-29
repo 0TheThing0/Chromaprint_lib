@@ -95,6 +95,16 @@ public class RawFingerprinter : IAudioConsumer
     }
 
     /// <summary>
+    ///     Returns the amount of fingerprint data (int32 values)
+    ///     based on the current image state
+    /// </summary>
+    /// <returns></returns>
+    public int GetReadyFPSize()
+    {
+        return _fingerprintCalculator.GetReadyFPSize(_image);
+    }
+    
+    /// <summary>
     ///     Process a block of audio data
     /// </summary>
     public void Consume(short[] input, int length)

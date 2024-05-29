@@ -14,7 +14,7 @@ public class AudioReader
     // not an interface. this needs to change.
 
     // private IAudioConsumer _consumer;
-    private readonly FileFingerprinter _fp;
+    private readonly FileFingerprinter _fingerprinter;
     
     
     private string _filePath;
@@ -33,7 +33,7 @@ public class AudioReader
     {
         _resample = false;
         _bufferSize = bufferSize;
-        _fp = fingerprinter;
+        _fingerprinter = fingerprinter;
         _bytes = new byte[_bufferSize];
         _data = new short[_bufferSize/2];
     }
@@ -51,7 +51,7 @@ public class AudioReader
         _bufferSize = bufferSize;
         _resample = true;
         _waveFormat = new WaveFormat(sampleRate, bitsDepth, channels);
-        _fp = fingerprinter;
+        _fingerprinter = fingerprinter;
         _bytes = new byte[_bufferSize];
         _data = new short[_bufferSize/2];
     }
@@ -140,8 +140,8 @@ public class AudioReader
             {
                 readedBytes = stream.Read(_bytes, 0, _bufferSize);
                 Buffer.BlockCopy(_bytes, 0, _data, 0, readedBytes);
-                _fp.Consume(_data, readedBytes / 2);
-            } while (readedBytes == _bufferSize && desiredFPSize?.CompareTo(_fp.GetReadyFPSize()) > 0);
+                _fingerprinter.Consume(_data, readedBytes / 2);
+            } while (readedBytes == _bufferSize && desiredFPSize?.CompareTo(_fingerprinter.GetReadyFPSize()) > 0);
         }
 
         fileReader?.Dispose();

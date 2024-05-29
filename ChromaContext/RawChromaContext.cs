@@ -69,6 +69,16 @@ public class RawChromaContext : IRawChromaContext
     }
 
     /// <summary>
+    ///     Returns the amount of fingerprint data (int32 values)
+    ///     based on the current image state
+    /// </summary>
+    /// <returns></returns>
+    public int GetReadyFPSize()
+    {
+        return _fingerprinter.GetReadyFPSize();
+    }
+    
+    /// <summary>
     ///     Send audio data to the fingerprint calculator (alias to Feed() method)
     /// </summary>
     /// <param name="input">

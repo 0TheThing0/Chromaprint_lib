@@ -57,6 +57,13 @@ public interface IRawChromaContext : IAudioConsumer
     public int GetFingerprintHash();
 
     /// <summary>
+    ///     Returns the amount of fingerprint data (int32 values)
+    ///     based on the current image state
+    /// </summary>
+    /// <returns></returns>
+    public int GetReadyFPSize();
+    
+    /// <summary>
     ///     Compress a raw fingerprint and optionally apply base64 encoding
     /// </summary>
     /// <param name="fingerprint"></param>
